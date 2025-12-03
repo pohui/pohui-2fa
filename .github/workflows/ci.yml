@@ -11,6 +11,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
@@ -36,9 +38,10 @@ jobs:
         run: dotnet publish TotpManager -c Release -r win-x64 /p:PublishTrimmed=false -o artifacts/TotpManager
 
       - name: Zip artifacts
+        shell: pwsh
         run: |
-          Compress-Archive -Path artifacts/App/* -DestinationPath artifacts/app.zip -Force
-          Compress-Archive -Path artifacts/TotpManager/* -DestinationPath artifacts/totpmanager.zip -Force
+          Compress-Archive -Path 'artifacts/App/*' -DestinationPath 'artifacts/app.zip' -Force
+          Compress-Archive -Path 'artifacts/TotpManager/*' -DestinationPath 'artifacts/totpmanager.zip' -Force
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
@@ -47,4 +50,3 @@ jobs:
           path: |
             artifacts/app.zip
             artifacts/totpmanager.zip
-
