@@ -28,7 +28,7 @@ jobs:
         run: dotnet publish App -c Release -r win-x64 /p:PublishSingleFile=true /p:PublishTrimmed=false -o artifacts/App
 
       - name: Publish TotpManager (win-x64)
-        run: dotnet publish TotpManager -c Release -r win-x64 /p:PublishTrimmed=false -o artifacts/TotpManager
+        run: dotnet publish TotpManager -c Release -r win-x64 /p:PublishSingleFile=true /p:PublishTrimmed=false -o artifacts/TotpManager
 
       - name: Zip artifacts
         run: |
