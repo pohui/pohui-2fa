@@ -54,9 +54,42 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Upload release assets
-        uses: softprops/action-gh-release@v2
+      - name: Upload app.zip
+        uses: actions/upload-release-asset@v1
         with:
-          files: artifacts/app.zip,artifacts/totpmanager.zip,artifacts/app-singlefile.zip,artifacts/totpmanager-singlefile.zip
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: artifacts/app.zip
+          asset_name: app.zip
+          asset_content_type: application/zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload totpmanager.zip
+        uses: actions/upload-release-asset@v1
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: artifacts/totpmanager.zip
+          asset_name: totpmanager.zip
+          asset_content_type: application/zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload app-singlefile.zip
+        uses: actions/upload-release-asset@v1
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: artifacts/app-singlefile.zip
+          asset_name: app-singlefile.zip
+          asset_content_type: application/zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload totpmanager-singlefile.zip
+        uses: actions/upload-release-asset@v1
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: artifacts/totpmanager-singlefile.zip
+          asset_name: totpmanager-singlefile.zip
+          asset_content_type: application/zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
