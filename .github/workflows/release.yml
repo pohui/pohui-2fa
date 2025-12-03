@@ -24,16 +24,23 @@ jobs:
       - name: Build
         run: dotnet build --configuration Release --no-restore
 
+      - name: Publish App (win-x64)
+        run: dotnet publish App -c Release -r win-x64 /p:PublishTrimmed=false -o artifacts/App
+        
       - name: Publish App (win-x64 single-file)
-        run: dotnet publish App -c Release -r win-x64 /p:PublishSingleFile=true /p:PublishTrimmed=false -o artifacts/App
+          run: dotnet publish App -c Release -r win-x64 /p:PublishSingleFile=true /p:PublishTrimmed=false -o artifacts/App-SingleFile
 
       - name: Publish TotpManager (win-x64)
-        run: dotnet publish TotpManager -c Release -r win-x64 /p:PublishSingleFile=true /p:PublishTrimmed=false -o artifacts/TotpManager
+        run: dotnet publish TotpManager -c Release -r win-x64 /p:PublishTrimmed=false -o artifacts/TotpManager
+      - name: Publish TotpManager (win-x64 single-file)
+        run: dotnet publish TotpManager -c Release -r win-x64 /p:PublishTrimmed=false -o artifacts/TotpManager-SingleFile
 
       - name: Zip artifacts
         run: |
           Compress-Archive -Path artifacts/App/* -DestinationPath artifacts/app.zip -Force
           Compress-Archive -Path artifacts/TotpManager/* -DestinationPath artifacts/totpmanager.zip -Force
+            Compress-Archive -Path artifacts/App-SingleFile/* -DestinationPath artifacts/app-singlefile.zip -Force
+            Compress-Archive -Path artifacts/TotpManager-SingleFile/* -DestinationPath artifacts/totpmanager-singlefile.zip -Force
 
       - name: Create GitHub Release
         id: create_release
@@ -46,7 +53,7 @@ jobs:
       - name: Upload release assets
         uses: softprops/action-gh-release@v2
         with:
-          files: artifacts/app.zip,artifacts/totpmanager.zip
+          files: artifacts/app.zip,artifacts/totpmanager.zip,artifacts/app-singlefile.zip,artifacts/totpmanager-singlefile.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
