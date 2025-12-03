@@ -1,0 +1,109 @@
+# Visual Studio / .NET
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Rider
+.idea/
+*.sln.iml
+*.Rider*
+
+# Build results
+bin/
+obj/
+**/bin/
+**/obj/
+
+# Publish artifacts
+publish/
+*.Publish.xml
+*.pubxml
+*.azurepubxml
+
+# NuGet
+*.nupkg
+packages/
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# Visual Studio Code
+.vscode/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+desktop.ini
+$RECYCLE.BIN/
+
+# Logs
+*.log
+
+# Debug / profiling
+*.pdb
+*.mdb
+*.cache
+*.pidb
+
+# Test results
+TestResults/
+*.trx
+*.coverage
+coverage*.xml
+
+# Database files
+*.mdf
+*.ldf
+*.db
+*.sqlite
+
+# Temporary files
+*.tmp
+*.bak
+*.old
+*.orig
+~$*
+
+# Rider caches
+.idea/
+*.iml
+
+# User-specific files
+*.local
+*.userprefs
+
+# Node/npm
+node_modules/
+npm-debug.log
+
+# Publish single-file runnable output (covered by bin/ normally)
+# but keep these patterns in case of other locations
+*.exe
+*.dll
+
+# Local app data (avoid committing runtime-generated secrets)
+# The apps create a data/ folder next to the executable for users/secrets — ignore it.
+data/
+**/data/
+
+# Specific local files created by this project
+WinFormsApp1/bin/
+WinFormsApp1/obj/
+TotpManager/bin/
+TotpManager/obj/
+
+# Rider/JetBrains
+.idea/
+*.iws
+
+# JetBrains Rider caches
+.idea/
+
+# Ignore user secrets file if present
+secrets.json
+
+# Keep this file tracked
+!.gitignore
+
