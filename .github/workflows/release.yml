@@ -4,9 +4,20 @@ on:
   push:
     tags:
       - 'v*.*.*'
+  # Also run this workflow when a build workflow completes
+  workflow_run:
+    workflows:
+      - "Build"    # <- set this to the exact "name:" of your build workflow
+    types:
+      - completed
 
 jobs:
   build-and-release:
+    # If this workflow was triggered by workflow_run, only proceed on success
+    if: >
+      github.event_name != 'workflow_run' ||
+      (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success')
+
     runs-on: windows-latest
 
     steps:
