@@ -11,6 +11,9 @@ on:
     types:
       - completed
 
+permissions:
+  contents: write
+
 jobs:
   build-and-release:
     # If this workflow was triggered by workflow_run, only proceed on success
