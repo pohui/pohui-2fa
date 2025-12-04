@@ -7,7 +7,7 @@ on:
   # Also run this workflow when a build workflow completes
   workflow_run:
     workflows:
-      - "Build"    # <- set this to the exact "name:" of your build workflow
+      - "ci"    # <- set this to the exact "name:" of your build workflow
     types:
       - completed
 
